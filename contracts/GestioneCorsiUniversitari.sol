@@ -57,9 +57,9 @@ contract GestioneCorsiUniversitari {
     //gli studenti si possono iscrivere
     function iscriviAlCorso(uint _corsoId, string memory _nomeIscritto, uint _matricola) public payable returns(bool){
         //creare un istanza di Iscritto 
-        require(corsi[_corsoId].numIscritti==corsi[_corsoId].maxNumIscritti);
-        require(corsi[_corsoId].iscritti[msg.sender].matricola==_matricola);
-        require(msg.value < corsi[_corsoId].prezzo);
+        require(corsi[_corsoId].numIscritti!=corsi[_corsoId].maxNumIscritti);
+        require(corsi[_corsoId].iscritti[msg.sender].matricola!=_matricola);
+        require(msg.value >= corsi[_corsoId].prezzo);
         
         Studente storage nuovoIscritto = corsi[_corsoId].iscritti[msg.sender];
         
